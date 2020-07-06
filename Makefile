@@ -6,8 +6,8 @@ format:
 	clang-format src/* include/* -i
 
 .PHONY: test
-test:
-	# No tests yet
+test: debug
+	build/test
 
 .PHONY: build
 build:

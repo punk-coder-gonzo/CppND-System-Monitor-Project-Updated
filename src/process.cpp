@@ -10,9 +10,6 @@ using std::string;
 using std::to_string;
 using std::vector;
 
-// TODO: Construct a Process object
-Process::Process(int pid) {}
-
 // TODO: Return this process's ID
 int Process::Pid() { return 0; }
 
@@ -32,4 +29,5 @@ string Process::User() { return string(); }
 long int Process::UpTime() { return 0; }
 
 // TODO: Overload the "less than" comparison operator for Process objects
-bool Process::operator<(const Process& a) const { return true; }
+// REMOVE: [[maybe_unused]] once you define the function
+bool Process::operator<(Process const& a[[maybe_unused]]) const { return true; }

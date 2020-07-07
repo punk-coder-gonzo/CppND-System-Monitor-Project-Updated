@@ -1,6 +1,3 @@
-#include <string>
-#include <vector>
-
 #include "processor.h"
 
 // TODO: Return the aggregate CPU utilization

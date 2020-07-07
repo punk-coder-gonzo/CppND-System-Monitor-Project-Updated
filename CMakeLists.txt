@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
+
+
+# https://cmake.org/cmake/help/v3.0/policy/CMP0048.html
+cmake_policy(SET CMP0048 NEW)
+
 project(monitor)
 
 find_package(Curses REQUIRED)
@@ -17,7 +22,14 @@ target_compile_options(monitor PRIVATE -Wall -Wextra)
 add_subdirectory(thirdparty/googletest)
 
 # Add the testing executable
-add_executable(test test/test_monitor.cpp src/format.cpp src/ncurses_display.cpp src/process.cpp src/processor.cpp src/system.cpp)
+add_executable(test 
+    test/test_monitor.cpp 
+    src/format.cpp 
+    src/ncurses_display.cpp 
+    src/process.cpp 
+    src/processor.cpp 
+    src/system.cpp
+    src/linux_parser.cpp)
 
 target_link_libraries(test 
     gtest_main 

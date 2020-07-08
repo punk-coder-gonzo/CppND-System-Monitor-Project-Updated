@@ -6,8 +6,12 @@ format:
 	clang-format src/* include/* -i
 
 .PHONY: test
-test: debug
-	build/test
+test: 
+	mkdir -p build
+	cd build && \
+	cmake -DCMAKE_BUILD_TYPE=debug .. && \
+	make test
+	./build/test
 
 .PHONY: build
 build:

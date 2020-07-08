@@ -21,8 +21,8 @@ target_compile_options(monitor PRIVATE -Wall -Wextra)
 
 add_subdirectory(thirdparty/googletest)
 
-# Add the testing executable
-add_executable(test 
+ #Add the testing executable
+ add_executable(test EXCLUDE_FROM_ALL
     test/test_monitor.cpp 
     src/format.cpp 
     src/ncurses_display.cpp 
@@ -30,7 +30,6 @@ add_executable(test
     src/processor.cpp 
     src/system.cpp
     src/linux_parser.cpp)
-
 target_link_libraries(test 
     gtest_main 
     ${CURSES_LIBRARIES}

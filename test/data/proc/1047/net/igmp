@@ -1,0 +1,7 @@
+Idx	Device    : Count Querier	Group    Users Timer	Reporter
+1	lo        :     2      V3
+				FB0000E0     1 0:00000000		0
+				010000E0     1 0:00000000		0
+2	enp0s3    :     2      V3
+				FB0000E0     1 0:00000000		0
+				010000E0     1 0:00000000		0

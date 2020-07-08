@@ -1,0 +1,28 @@
+kworker/u12:4 (12091, #threads: 1)
+-------------------------------------------------------------------
+se.exec_start                                :      18348056.369108
+se.vruntime                                  :        365419.377798
+se.sum_exec_runtime                          :            73.587031
+se.nr_migrations                             :                    7
+nr_switches                                  :                  787
+nr_voluntary_switches                        :                  781
+nr_involuntary_switches                      :                    6
+se.load.weight                               :              1048576
+se.runnable_weight                           :              1048576
+se.avg.load_sum                              :                  121
+se.avg.runnable_load_sum                     :                  121
+se.avg.util_sum                              :                76064
+se.avg.load_avg                              :                    2
+se.avg.runnable_load_avg                     :                    2
+se.avg.util_avg                              :                    1
+se.avg.last_update_time                      :       18348056368128
+se.avg.util_est.ewma                         :                   10
+se.avg.util_est.enqueued                     :                    0
+policy                                       :                    0
+prio                                         :                  120
+clock-delta                                  :                   35
+numa_pages_migrated                          :                    0
+numa_preferred_nid                           :                   -1
+total_numa_faults                            :                    0
+current_node=0, numa_group_id=0
+numa_faults node=0 task_private=0 task_shared=0 group_private=0 group_shared=0

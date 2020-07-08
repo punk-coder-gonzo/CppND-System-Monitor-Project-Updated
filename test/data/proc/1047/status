@@ -1,0 +1,55 @@
+Name:	VBoxClient
+Umask:	0027
+State:	S (sleeping)
+Tgid:	1047
+Ngid:	0
+Pid:	1047
+PPid:	1046
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	64
+Groups:	 
+NStgid:	1047
+NSpid:	1047
+NSpgid:	1045
+NSsid:	1045
+VmPeak:	  131960 kB
+VmSize:	  131960 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    2232 kB
+VmRSS:	    2232 kB
+RssAnon:	     436 kB
+RssFile:	    1796 kB
+RssShmem:	       0 kB
+VmData:	   17072 kB
+VmStk:	     132 kB
+VmExe:	    1532 kB
+VmLib:	    4724 kB
+VmPTE:	     144 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+Threads:	1
+SigQ:	0/15550
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000002000
+SigIgn:	0000000000000000
+SigCgt:	0000000180017a07
+CapInh:	0000000000000000
+CapPrm:	0000003fffffffff
+CapEff:	0000003fffffffff
+CapBnd:	0000003fffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Speculation_Store_Bypass:	vulnerable
+Cpus_allowed:	3f
+Cpus_allowed_list:	0-5
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	2
+nonvoluntary_ctxt_switches:	1

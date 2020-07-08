@@ -1,0 +1,29 @@
+kerneloops (883, #threads: 1)
+-------------------------------------------------------------------
+se.exec_start                                :      18517981.060349
+se.vruntime                                  :           519.756958
+se.sum_exec_runtime                          :           581.824758
+se.nr_migrations                             :                    2
+nr_switches                                  :                  314
+nr_voluntary_switches                        :                  312
+nr_involuntary_switches                      :                    2
+se.load.weight                               :              1048576
+se.runnable_weight                           :              1048576
+se.avg.load_sum                              :                  504
+se.avg.runnable_load_sum                     :                  504
+se.avg.util_sum                              :               499712
+se.avg.load_avg                              :                    0
+se.avg.runnable_load_avg                     :                    0
+se.avg.util_avg                              :                    0
+se.avg.last_update_time                      :       18517981060096
+se.avg.util_est.ewma                         :                   19
+se.avg.util_est.enqueued                     :                    1
+policy                                       :                    0
+prio                                         :                  120
+clock-delta                                  :                   42
+mm->numa_scan_seq                            :                    0
+numa_pages_migrated                          :                    0
+numa_preferred_nid                           :                   -1
+total_numa_faults                            :                    0
+current_node=0, numa_group_id=0
+numa_faults node=0 task_private=0 task_shared=0 group_private=0 group_shared=0

@@ -23,11 +23,11 @@ TEST(TestLinuxParser, Kernel){
 
 TEST(TestLinuxParser, Pids){
     std::vector<int> pids = LinuxParser::Pids();
-    EXPECT_EQ(pids.size(), 3);
+    EXPECT_EQ(pids.size(), 7);
 }
 
 TEST(TestLinuxParser, MemoryUtilization){
-    EXPECT_EQ(LinuxParser::MemoryUtilization, 3141624);
+    EXPECT_EQ(LinuxParser::MemoryUtilization(), 3141624);
 }
 
 TEST(TestLinuxParser, UpTime){

@@ -8,7 +8,15 @@
 namespace LinuxParser {
 // Paths
 
-const std::string kProcDirectory{"/proc/"};
+//#define TEST_DATA_DIR "/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data"
+//#define TEST_DATA_DIR "/"
+#ifndef TEST_DATA_DIR
+#define TEST_DATA_DIR
+#endif
+#define ADD_ROOT_DIR(x) TEST_DATA_DIR x
+//#endif
+
+const std::string kProcDirectory{ADD_ROOT_DIR("/proc/")};
 const std::string kCmdlineFilename{"/cmdline"};
 const std::string kCpuinfoFilename{"/cpuinfo"};
 const std::string kStatusFilename{"/status"};
@@ -16,8 +24,8 @@ const std::string kStatFilename{"/stat"};
 const std::string kUptimeFilename{"/uptime"};
 const std::string kMeminfoFilename{"/meminfo"};
 const std::string kVersionFilename{"/version"};
-const std::string kOSPath{"/etc/os-release"};
-const std::string kPasswordPath{"/etc/passwd"};
+const std::string kOSPath{ADD_ROOT_DIR("/etc/os-release")};
+const std::string kPasswordPath{ADD_ROOT_DIR("/etc/passwd")};
 
 // System
 float MemoryUtilization();

@@ -34,3 +34,4 @@ target_link_libraries(test
     gtest_main 
     ${CURSES_LIBRARIES}
 )
+target_compile_options(test PRIVATE -Wall -Wextra -Wpedantic -DTEST_DATA_DIR="/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data")

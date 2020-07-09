@@ -3,6 +3,7 @@
 #include <iostream>
 #include "format.h"
 #include "linux_parser.h"
+#include "system.h"
 
 TEST(TestFormat, ElapsedTime){
     // INPUT: Long int measuring seconds
@@ -27,9 +28,17 @@ TEST(TestLinuxParser, Pids){
 }
 
 TEST(TestLinuxParser, MemoryUtilization){
-    EXPECT_EQ(LinuxParser::MemoryUtilization(), 3141624);
+    EXPECT_FLOAT_EQ(LinuxParser::MemoryUtilization(), 0.779595);
 }
 
 TEST(TestLinuxParser, UpTime){
     EXPECT_EQ(LinuxParser::UpTime(), 38492);
+}
+
+TEST(TestSystem, Processes){
+    System sys;
+    EXPECT_EQ(sys.Processes().size(), 7);
+    EXPECT_EQ(sys.Processes().at(0).Pid(), 1046);
+    EXPECT_EQ(sys.Processes().at(0).Command(), "VBoxClient");
+    EXPECT_EQ(sys.Processes().at(2).Command(), "/usr/sbin/kerneloops");
 }

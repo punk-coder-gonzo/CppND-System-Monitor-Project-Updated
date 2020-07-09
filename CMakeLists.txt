@@ -15,7 +15,7 @@ file(GLOB SOURCES "src/*.cpp")
 add_executable(monitor ${SOURCES})
 
 set_property(TARGET monitor PROPERTY CXX_STANDARD 17)
-target_link_libraries(monitor ${CURSES_LIBRARIES})
+target_link_libraries(monitor ${CURSES_LIBRARIES} stdc++fs)
 # TODO: Run -Werror in CI.
 target_compile_options(monitor PRIVATE -Wall -Wextra)
 
@@ -31,7 +31,9 @@ add_subdirectory(thirdparty/googletest)
     src/system.cpp
     src/linux_parser.cpp)
 target_link_libraries(test 
+    stdc++fs
     gtest_main 
     ${CURSES_LIBRARIES}
 )
 target_compile_options(test PRIVATE -Wall -Wextra -Wpedantic -DTEST_DATA_DIR="/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data")
+set_property(TARGET test PROPERTY CXX_STANDARD 17)

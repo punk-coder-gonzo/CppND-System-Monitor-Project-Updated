@@ -1,8 +1,10 @@
 #include <dirent.h>
 #include <unistd.h>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
+#include <experimental/filesystem>
+#include <algorithm>
 
 #include "linux_parser.h"
 
@@ -10,6 +12,7 @@ using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
+namespace fs = std::experimental::filesystem;
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
@@ -42,7 +45,7 @@ string LinuxParser::Kernel() {
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-    linestream >> os >>ignore >> kernel;
+    linestream >> os >> ignore >> kernel;
   }
   return kernel;
 }
@@ -68,7 +71,7 @@ vector<int> LinuxParser::Pids() {
 }
 
 // DONE: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { 
+float LinuxParser::MemoryUtilization() {
   string line;
   string ignore;
   string value;
@@ -85,13 +88,12 @@ float LinuxParser::MemoryUtilization() {
     std::istringstream mem_freelinestream(line);
     mem_freelinestream >> ignore >> mem_free;
   }
-  
-  return (mem_total - mem_free); 
-  
-  }
+
+  return (mem_total - mem_free) / mem_total;
+}
 
 // DONE: Read and return the system uptime
-long LinuxParser::UpTime() { 
+long LinuxParser::UpTime() {
   long uptime;
   string line;
   std::ifstream stream(kProcDirectory + kUptimeFilename);
@@ -101,9 +103,7 @@ long LinuxParser::UpTime() {
     linestream >> uptime;
   }
   return uptime;
-  
-  return 0; 
-  }
+}
 
 // TODO: Read and return the number of jiffies for the system
 long LinuxParser::Jiffies() { return 0; }
@@ -127,9 +127,23 @@ int LinuxParser::TotalProcesses() { return 0; }
 // TODO: Read and return the number of running processes
 int LinuxParser::RunningProcesses() { return 0; }
 
-// TODO: Read and return the command associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Command(int pid[[maybe_unused]]) { return string(); }
+// DONE: Read and return the command associated with a process
+string LinuxParser::Command(int pid) { 
+ 
+  string cmdline;
+
+  fs::path proc_directory{kProcDirectory};
+  fs::path cmdline_filename{kCmdlineFilename};
+  fs::path PID{to_string(pid)};
+  std::ifstream stream(proc_directory/PID/cmdline_filename);
+  if (stream.is_open()) {
+    std::getline(stream, cmdline, '\0'); 
+    std::stringstream ss(cmdline);
+    ss >> cmdline;  
+  }
+   
+  return cmdline; 
+}
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function

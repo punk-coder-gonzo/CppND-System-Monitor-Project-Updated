@@ -8,7 +8,8 @@
 namespace LinuxParser {
 // Paths
 
-//#define TEST_DATA_DIR "/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data"
+//#define TEST_DATA_DIR
+//"/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data"
 //#define TEST_DATA_DIR "/"
 #ifndef TEST_DATA_DIR
 #define TEST_DATA_DIR
@@ -61,6 +62,6 @@ std::string Ram(int pid);
 std::string Uid(int pid);
 std::string User(int pid);
 long int UpTime(int pid);
-};  // namespace LinuxParser
+}  // namespace LinuxParser
 
 #endif

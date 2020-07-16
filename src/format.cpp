@@ -26,3 +26,11 @@ std::string Format::ElapsedTime(long int second) {
   std::string result{ss.str()};
   return result;
 }
+
+std::string Format::Ram(std::string input) {
+  std::stringstream ss;
+
+  ss << std::setprecision(0) << std::fixed << std::atof(input.c_str());
+
+  return ss.str();
+}

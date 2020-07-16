@@ -23,8 +23,14 @@ string Process::Command() {
   return m_command;
 }
 
+// a zombie has an empty cmdline
+// https://man7.org/linux/man-pages/man5/proc.5.html
+// kernel threads as well
+// https://lkml.org/lkml/2018/5/16/1084
+bool Process::is_nullcmd() { return (LinuxParser::Command(m_pid).empty()); }
+
 // TODO: Return this process's memory utilization
-string Process::Ram() { return string(); }
+string Process::Ram() { return LinuxParser::Ram(m_pid); }
 
 // TODO: Return the user (name) that generated this process
 string Process::User() { return string(); }

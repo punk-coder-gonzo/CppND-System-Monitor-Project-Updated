@@ -18,6 +18,7 @@ set_property(TARGET monitor PROPERTY CXX_STANDARD 17)
 target_link_libraries(monitor ${CURSES_LIBRARIES} stdc++fs)
 # TODO: Run -Werror in CI.
 target_compile_options(monitor PRIVATE -Wall -Wextra)
+#target_compile_options(monitor PRIVATE -DTEST_DATA_DIR="${PROJECT_SOURCE_DIR}/test/data")
 
 add_subdirectory(thirdparty/googletest)
 
@@ -35,5 +36,5 @@ target_link_libraries(test
     gtest_main 
     ${CURSES_LIBRARIES}
 )
-target_compile_options(test PRIVATE -Wall -Wextra -Wpedantic -DTEST_DATA_DIR="/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data")
+target_compile_options(test PRIVATE -Wall -Wextra -Wpedantic -DTEST_DATA_DIR="${PROJECT_SOURCE_DIR}/test/data")
 set_property(TARGET test PROPERTY CXX_STANDARD 17)

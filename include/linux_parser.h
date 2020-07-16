@@ -4,18 +4,17 @@
 #include <fstream>
 #include <regex>
 #include <string>
+#include <experimental/filesystem>
 
 namespace LinuxParser {
-// Paths
 
-//#define TEST_DATA_DIR
-//"/home/witter/work/udacity-cpp/CppND-System-Monitor-Project-Updated/test/data"
-//#define TEST_DATA_DIR "/"
+namespace fs = std::experimental::filesystem;
+
+// Paths
 #ifndef TEST_DATA_DIR
 #define TEST_DATA_DIR
 #endif
 #define ADD_ROOT_DIR(x) TEST_DATA_DIR x
-//#endif
 
 const std::string kProcDirectory{ADD_ROOT_DIR("/proc/")};
 const std::string kCmdlineFilename{"/cmdline"};
@@ -62,6 +61,9 @@ std::string Ram(int pid);
 std::string Uid(int pid);
 std::string User(int pid);
 long int UpTime(int pid);
+
+// Helper Functions
+bool isProcessDirectory(const fs::directory_entry& d);
 }  // namespace LinuxParser
 
 #endif

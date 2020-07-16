@@ -1,18 +1,18 @@
+#include "linux_parser.h"
+
 #include <dirent.h>
 #include <unistd.h>
+
+#include <algorithm>
+#include <experimental/filesystem>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <experimental/filesystem>
-#include <algorithm>
-
-#include "linux_parser.h"
 
 using std::stof;
 using std::string;
 using std::to_string;
 using std::vector;
-namespace fs = std::experimental::filesystem;
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::OperatingSystem() {
@@ -110,7 +110,7 @@ long LinuxParser::Jiffies() { return 0; }
 
 // TODO: Read and return the number of active jiffies for a PID
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]]) { return 0; }
+long LinuxParser::ActiveJiffies(int pid [[maybe_unused]]) { return 0; }
 
 // TODO: Read and return the number of active jiffies for the system
 long LinuxParser::ActiveJiffies() { return 0; }
@@ -121,42 +121,89 @@ long LinuxParser::IdleJiffies() { return 0; }
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
+// https://en.cppreference.com/w/cpp/string/byte/isdigit
+unsigned int count_digits(const std::string& s) {
+  return std::count_if(s.begin(), s.end(),
+                       [](unsigned char c) { return std::isdigit(c); });
+}
+
+// TODO:
+bool LinuxParser::isProcessDirectory(const fs::directory_entry& d) {
+  std::string dirname;
+
+  if (d.path().has_filename()) {
+    dirname = d.path().filename();
+  } else {
+    dirname = d.path().relative_path().filename();
+  }
+
+  bool isAllDigit = (count_digits(dirname) == dirname.length());
+  
+  return fs::is_directory(d.status()) && isAllDigit;
+}
+
 // TODO: Read and return the total number of processes
-int LinuxParser::TotalProcesses() { return 0; }
+int LinuxParser::TotalProcesses() {
+  int value{0};
+
+  auto iter = fs::directory_iterator(kProcDirectory);
+  value = std::count_if(fs::begin(iter), fs::end(iter), isProcessDirectory);
+
+  return value;
+}
 
 // TODO: Read and return the number of running processes
 int LinuxParser::RunningProcesses() { return 0; }
 
 // DONE: Read and return the command associated with a process
-string LinuxParser::Command(int pid) { 
- 
+string LinuxParser::Command(int pid) {
   string cmdline;
 
   fs::path proc_directory{kProcDirectory};
   fs::path cmdline_filename{kCmdlineFilename};
   fs::path PID{to_string(pid)};
-  std::ifstream stream(proc_directory/PID/cmdline_filename);
+  std::ifstream stream(proc_directory / PID / cmdline_filename);
   if (stream.is_open()) {
-    std::getline(stream, cmdline, '\0'); 
+    std::getline(stream, cmdline, '\0');
     std::stringstream ss(cmdline);
-    ss >> cmdline;  
+    ss >> cmdline;
   }
-   
-  return cmdline; 
+
+  return cmdline;
 }
 
-// TODO: Read and return the memory used by a process
-// REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Ram(int pid[[maybe_unused]]) { return string(); }
+// DONE: Read and return the memory used by a process
+string LinuxParser::Ram(int pid) {
+  string key;
+  float value;
+  string line;
+
+  fs::path proc_directory{kProcDirectory};
+  fs::path status_filename{kStatusFilename};
+  fs::path PID{to_string(pid)};
+  std::ifstream stream(proc_directory / PID / status_filename);
+  if (stream.is_open()) {
+    while (std::getline(stream, line)) {
+      std::stringstream ss(line);
+      while (ss >> key >> value) {
+        if (key == "VmSize:") {
+          return to_string(value / 1024);
+        }
+      }
+    }
+  }
+
+  return to_string(value);
+}
 
 // TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Uid(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Uid(int pid [[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::User(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::User(int pid [[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid[[maybe_unused]]) { return 0; }
+long LinuxParser::UpTime(int pid [[maybe_unused]]) { return 0; }

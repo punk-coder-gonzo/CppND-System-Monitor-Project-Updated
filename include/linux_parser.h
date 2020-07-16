@@ -1,10 +1,10 @@
 #ifndef SYSTEM_PARSER_H
 #define SYSTEM_PARSER_H
 
+#include <experimental/filesystem>
 #include <fstream>
 #include <regex>
 #include <string>
-#include <experimental/filesystem>
 
 namespace LinuxParser {
 

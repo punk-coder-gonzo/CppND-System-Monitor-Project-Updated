@@ -78,8 +78,6 @@ TEST(TestLinuxParser, isNotProcessDirectory){
     for (auto& iter : fs::directory_iterator(tmpdir)){
         EXPECT_FALSE(LinuxParser::isProcessDirectory(iter)) << "\tTest directory: " << iter;
     }
-    
-    //fs::remove_all(tmpdir);
 }
 
 TEST(TestLinuxParser, ProcessDirectoryEdgeCase){
@@ -94,6 +92,32 @@ TEST(TestLinuxParser, ProcessDirectoryEdgeCase){
     for (auto& iter : fs::directory_iterator(tmpdir)){
         EXPECT_TRUE(LinuxParser::isProcessDirectory(iter)) << "\tTest directory: " << iter;
     }
-    
-    //fs::remove_all(tmpdir);
+}
+
+TEST(TestLinuxParser, CpuUtilization){
+    auto cpustat =  LinuxParser::CpuUtilization();
+    EXPECT_EQ(cpustat.size(),10);
+    EXPECT_EQ(cpustat[0], "319936");
+    EXPECT_EQ(cpustat[1], "3902");
+    EXPECT_EQ(cpustat[2], "91441");
+    EXPECT_EQ(cpustat[3], "22498794");
+    EXPECT_EQ(cpustat[4], "7231");
+    EXPECT_EQ(cpustat[5], "0");
+    EXPECT_EQ(cpustat[6], "5230");
+    EXPECT_EQ(cpustat[7], "0");
+    EXPECT_EQ(cpustat[8], "0");
+    EXPECT_EQ(cpustat[9], "0");
+}
+
+TEST(TestSystem, CPU){
+    auto system = System();
+    EXPECT_FLOAT_EQ(system.Cpu().Utilization(), 0.018341545);
+}
+
+TEST(TestLinuxParser, Uid_PID){
+    EXPECT_EQ(LinuxParser::Uid(743),"0");
+}
+
+TEST(TestLinuxParser, User_PID){
+    EXPECT_EQ(LinuxParser::User(743),"root");
 }

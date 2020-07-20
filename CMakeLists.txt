@@ -18,7 +18,7 @@ set_property(TARGET monitor PROPERTY CXX_STANDARD 17)
 target_link_libraries(monitor ${CURSES_LIBRARIES} stdc++fs)
 # TODO: Run -Werror in CI.
 target_compile_options(monitor PRIVATE -Wall -Wextra)
-target_compile_options(monitor PRIVATE -DTEST_DATA_DIR="${PROJECT_SOURCE_DIR}/test/data")
+#target_compile_options(monitor PRIVATE -DTEST_DATA_DIR="${PROJECT_SOURCE_DIR}/test/data")
 
 add_subdirectory(thirdparty/googletest)
 

@@ -61,9 +61,21 @@ std::string Ram(int pid);
 std::string Uid(int pid);
 std::string User(int pid);
 long int UpTime(int pid);
+std::vector<std::string> ReadStatFile(int pid);
+int CpuUtilization(int pid);
+
+class PidStat {
+ public:
+  static constexpr std::size_t utime = 13;
+  static constexpr std::size_t stime = 14;
+  static constexpr std::size_t cutime = 15;
+  static constexpr std::size_t cstime = 16;
+  static constexpr std::size_t starttime = 21;
+};
 
 // Helper Functions
 bool isProcessDirectory(const fs::directory_entry& d);
+std::vector<std::string> ReadPidStatFile(int pid);
 }  // namespace LinuxParser
 
 #endif
